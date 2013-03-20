@@ -1,6 +1,8 @@
 include_recipe "git"
 include_recipe "logrotate"
 
+require 'pp' # for Array#pretty_inspect
+
 kibana_base = node['logstash']['kibana']['basedir']
 kibana_home = node['logstash']['kibana']['home']
 kibana_log_dir = node['logstash']['kibana']['log_dir']
@@ -107,6 +109,9 @@ when "ruby"
     source "kibana-config.rb.erb"
     owner 'kibana'
     mode 0755
+    variables(
+      :default_fields => node['logstash']['kibana']['default_fields'].pretty_inspect
+    )
   end
   
   template "#{kibana_home}/kibana-daemon.rb" do

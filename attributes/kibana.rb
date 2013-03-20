@@ -16,4 +16,4 @@ default['apache']['default_site_enabled'] = false
 #Smart_index_pattern = 'logstash-%Y.%m.%d'
 default['logstash']['kibana']['smart_index_pattern'] = 'logstash-%Y.%m.%d' 
 default['logstash']['kibana']['language'] = "ruby" 
-
+default['logstash']['kibana']['default_fields'] = ['@message']
